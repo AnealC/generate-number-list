@@ -1,0 +1,79 @@
+#------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022 by Aaron Neal Crawford
+#------------------------------------------------------------------------------------------------
+#  Purpose of Program:
+#  Calculates the total sum, count, and average of the numbers stored in numbers.txt
+#=================================================================================================
+# Data Dictionary
+#  Name                     Type          Range         Use
+#  ------                   -----         ----------    -----------------------------------------
+#  average                  var/equation  total() / num_of_numbers() uses the outcome of the two
+#                                                                    functions to determine the
+#                                                                    average
+#=================================================================================================
+#  Functions used:
+#  Name                  Inputs           Use
+#  ------                ------------     --------------------------------------------------------
+#  total()               numbers.txt      Adds up the numbers stored in numbers.txt
+#  num_of_numbers()      numbers.txt      counts the number of numbers stored in numbers.txt
+#
+#=================================================================================================
+
+
+#====================================================================================
+# Function name: total()     Author: Aaron Crawford
+# Date Written: May 2, 2022
+#====================================================================================
+# Purpose of Function: Opens numbers.txt, converts the string into int, adds up the
+#                      numbers for a total sum
+#====================================================================================
+# Data Dictionary
+#  Name            Type          Range          Use
+#  ------          -----         ----------     ----------------------------
+# open_file        Var           N/A            opens numbers.txt
+# contents         Var           N/A            Converts the str in numbers.txt to
+#                                               int
+# sum(contents)    equation      numbers.txt    Adds the ints in contents for total sum
+#====================================================================================
+def total():
+    try:
+        open_file = open('numbers.txt', 'r')
+        contents = [int(i) for i in open_file]
+        open_file.close()
+        print('The total of the numbers stored is:', sum(contents))
+        return sum(contents)
+    except:
+        print('Oops! Looks like something went wrong! Check the file, then try again!')
+
+#====================================================================================
+# Function name: num_of_numbers()     Author: Aaron Crawford
+# Date Written: May 2, 2022
+#====================================================================================
+# Purpose of Function: counts and presents the number of numbers in numbers.txt
+#
+#====================================================================================
+# Data Dictionary
+#  Name            Type          Range          Use
+#  ------          -----         ----------     ----------------------------
+# open_file        Var           N/A            Opens the file numbers.txt
+# data             Var           N/A            Sets file to read
+# count            Var           N/A            Splits up the file into its separate parts
+# len(count)       Var           N/A            Counts and presets the split
+#                                               up individual numbers
+#====================================================================================
+def num_of_numbers():
+    try:
+        open_file = open('numbers.txt', 'r')
+        data = open_file.read()
+        count = data.split()
+        open_file.close()
+        print('The number of random numbers stored is:', len(count))
+        return len(count)
+    except:
+        print('Oops! Looks like something went wrong, check the file, then try again!')
+
+try:
+    average = total() / num_of_numbers()
+    print('The average of the stored numbers is:', int(average))
+except:
+    print('Oops! Looks like something went wrong, check the file, then try again!')

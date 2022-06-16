@@ -1,0 +1,61 @@
+#------------------------------------------------------------------------------------------------
+#  Copyright (c) 2022 by Aaron Neal Crawford
+#------------------------------------------------------------------------------------------------
+#  Purpose of Program:
+#  This program writes a series of random numbers to a file between the range of 1 to 500 based
+#  based on user input.
+#=================================================================================================
+# Data Dictionary
+#  Name                     Type          Range         Use
+#  ------                   -----         ----------    -----------------------------------------
+#  randomlist               list          [input]       List of numbers generated and saved to file
+#  import random            OS                          imports the random number functionality
+#=================================================================================================
+#  Functions used:
+#  Name                  Inputs           Use
+#  ------                ------------     --------------------------------------------------------
+#  num_list()                             Generates a list of random numbers based on user input,
+#                                         then saves that list to a file called numbers.txt
+#=================================================================================================
+
+import random
+randomlist = []
+#====================================================================================
+# Function name: num_list()     Author: Aaron Crawford
+# Date Written: May 2, 2022
+#====================================================================================
+# Purpose of Function: Creates a list of random numbers from 1 to 500. The number of
+#                      random numbers is determined by user input.
+#====================================================================================
+# Data Dictionary
+#  Name            Type          Range          Use
+#  ------               -----            ----------       ----------------------------
+# user_num                 input/int     [inf]         User input: number of random numbers to be stored
+# n                        int           [1 - 500]     Random number generated
+# num_file                 var           N/A           Opens the numbers.txt file for writing
+#
+#====================================================================================
+def num_list():
+    # Starts loop for I/O check
+    while True:
+        # Input for numbers in list
+        user_num = input('Please enter how many numbers you would like to store: ')
+        # I/O check
+        try:
+            # Generates the random numbers and appends them to the list
+            for i in range(0, int(user_num)):
+                n = random.randint(1, 500)
+                randomlist.append(n)
+            # Open and write above list to file numbers.txt
+            num_file = open('numbers.txt', 'w')
+            for num in randomlist:
+                num_file.write(str(num) + '\n')
+            num_file.close()
+            return print('You wrote', user_num, 'numbers to the file!')
+        # Runs general exception check
+        except:
+            print("Oops! That was an invalid entry, please try again...")
+
+# Call num_list function
+num_list()
+
